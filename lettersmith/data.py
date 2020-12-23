@@ -1,7 +1,9 @@
+import json
 from pathlib import Path
-import yaml
-from lettersmith.path import glob_all
 
+import yaml
+
+from lettersmith.path import glob_all
 
 YAML_EXT = (".yaml", ".yml")
 JSON_EXT = (".json")

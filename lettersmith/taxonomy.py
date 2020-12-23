@@ -2,16 +2,15 @@
 Tools for indexing docs by tag (taxonomy).
 """
 from datetime import datetime
-from lettersmith.func import composable, pipe
-from lettersmith import path as pathtools
-from lettersmith import stub as Stub
+
 from lettersmith import doc as Doc
 from lettersmith import docs as Docs
+from lettersmith import path as pathtools
+from lettersmith import stub as Stub
+from lettersmith.func import composable, pipe
 from lettersmith.lens import lens_compose, key, get, put
 
-
 _empty = tuple()
-
 
 meta_related = lens_compose(Doc.meta, key("related", _empty))
 
@@ -28,10 +27,10 @@ meta_tags = meta_taxonomy("tags")
 
 @composable
 def taxonomy_archives(
-    docs,
-    key,
-    template="taxonomy.html",
-    output_path_template="{taxonomy}/{term}/index.html"
+        docs,
+        key,
+        template="taxonomy.html",
+        output_path_template="{taxonomy}/{term}/index.html"
 ):
     """
     Creates an archive page for each taxonomy term. One page per term.
@@ -100,6 +99,7 @@ def related(tax):
     """
     taxonomy = meta_taxonomy(tax)
     build_index = index_taxonomy(tax)
+
     def add_related(docs):
         docs = tuple(docs)
         index = build_index(docs)
@@ -112,6 +112,7 @@ def related(tax):
                 tuple
             )
             yield put(meta_related, doc, related)
+
     return add_related
 
 

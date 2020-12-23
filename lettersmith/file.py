@@ -5,10 +5,9 @@ Files are namedtuples that represent the raw bytes in a file to be
 copied or transformed.
 """
 from collections import namedtuple
-from pathlib import PurePath
-from lettersmith.date import read_file_times, EPOCH, to_datetime
-from lettersmith import doc as Doc
 
+from lettersmith import doc as Doc
+from lettersmith.date import read_file_times, EPOCH, to_datetime
 
 File = namedtuple("File", (
     "id_path", "output_path", "input_path",
@@ -23,7 +22,7 @@ Files contain a `blob` field that contains the bytes of the file.
 
 
 def create(id_path, output_path, blob,
-    input_path=None, created=EPOCH, modified=EPOCH):
+           input_path=None, created=EPOCH, modified=EPOCH):
     """
     Create a File tuple, populating it with sensible defaults
     """

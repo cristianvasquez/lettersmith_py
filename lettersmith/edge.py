@@ -3,7 +3,6 @@ Data structure for describing directed graph connections.
 """
 from collections import namedtuple
 
-
 Edge = namedtuple("Edge", ("tail", "head"))
 Edge.__doc__ = """
 A directed edge that points from one thing to another.

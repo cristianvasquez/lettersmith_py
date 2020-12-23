@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-import random
 import argparse
+import random
+
 from lettersmith import doc as Doc
 
 PARA_1 = """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -43,9 +44,7 @@ purus in, volutpat nisl. Suspendisse posuere dictum auctor.
 Vivamus id rutrum nunc. Sed maximus metus nec erat imperdiet
 dignissim. Duis sit amet semper urna. Integer non mi tortor."""
 
-
 PARAS = (PARA_1, PARA_2, PARA_3, PARA_4)
-
 
 HEADINGS = (
     "Sed maximus metus nec",
@@ -54,7 +53,6 @@ HEADINGS = (
     "Semper urna integer non mi",
     "Vivamus id rutrum nunc"
 )
-
 
 TEMPLATE = """{para_1}
 
@@ -92,6 +90,7 @@ def gen_text():
         bullet_3=random.choice(HEADINGS)
     )
 
+
 def gen_doc(i):
     id_path = "Test Doc {}.md".format(i)
     return Doc.create(
@@ -124,10 +123,11 @@ parser.add_argument(
 
 
 def main():
-    args= parser.parse_args()
+    args = parser.parse_args()
     docs = gen_docs(args.n)
     for doc in docs:
         Doc.write(doc, output_dir=args.output_path)
+
 
 if __name__ == '__main__':
     main()

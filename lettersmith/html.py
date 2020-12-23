@@ -20,8 +20,9 @@ Example:
 """
 import re
 from collections import namedtuple
-from lettersmith.stringtools import first_sentence
+
 from lettersmith import docs as Docs
+from lettersmith.stringtools import first_sentence
 
 
 def strip_html(html_str):
@@ -58,7 +59,7 @@ def _tokenize(lines):
     """
     for line in lines:
         line_clean = line.strip()
-        if line_clean is "":
+        if line_clean == "":
             pass
         elif line.startswith("  "):
             yield Token("html", line_clean)
@@ -73,9 +74,9 @@ def _render_token(token):
     Render HTML tokens. This markup language is very simple, so we only
     have two.
     """
-    if token.type is "html":
+    if token.type == "html":
         return token.body
-    elif token.type is "p":
+    elif token.type == "p":
         return "<p>{}</p>".format(token.body)
     else:
         raise RenderError("Unknown token type {}".format(token.type))

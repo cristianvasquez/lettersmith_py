@@ -2,10 +2,10 @@
 Stubs are summary details for a document.
 """
 from collections import namedtuple
-from lettersmith import doc as Doc
-from lettersmith.lens import get
-from lettersmith import query
 
+from lettersmith import doc as Doc
+from lettersmith import query
+from lettersmith.lens import get
 
 Stub = namedtuple("Stub", (
     "id_path",
@@ -22,6 +22,7 @@ the summary details of a document. No content, no meta, no template.
 Only hashable properties, so stubs can be used in sets.
 (Note that datetime objects are immutable and hashable.)
 """
+
 
 def from_doc(doc):
     """

@@ -1,10 +1,9 @@
 """
 Tools for working with collections of files
 """
-from lettersmith.path import glob_files
 from lettersmith import file as File
 from lettersmith import query
-
+from lettersmith.path import glob_files
 
 load = query.maps(File.load)
 

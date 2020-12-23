@@ -11,23 +11,18 @@ For working with non-text files, images, binary files, or text files
 with other encodings, see `lettersmith.file` which stores the raw bytes
 instead of reading them into a Python string.
 """
-from pathlib import PurePath, Path
-import json
 from collections import namedtuple
 from functools import wraps
 
 import frontmatter
-import yaml
 
-from lettersmith.util import mix
-from lettersmith.date import read_file_times, EPOCH, to_datetime
 from lettersmith import path as pathtools
-from lettersmith import lens
+from lettersmith.date import read_file_times, EPOCH, to_datetime
+from lettersmith.func import compose
 from lettersmith.lens import (
     Lens, lens_compose, get, put, key, over_with, update
 )
-from lettersmith.func import compose
-
+from lettersmith.util import mix
 
 Doc = namedtuple("Doc", (
     "id_path", "output_path", "input_path", "created", "modified",
@@ -43,8 +38,8 @@ contents of the file.
 
 
 def create(id_path, output_path,
-    input_path=None, created=EPOCH, modified=EPOCH,
-    title="", content="", meta=None, template=""):
+           input_path=None, created=EPOCH, modified=EPOCH,
+           title="", content="", meta=None, template=""):
     """
     Create a Doc tuple, populating it with sensible defaults
     """
@@ -100,7 +95,6 @@ id_path = Lens(
     lambda doc, id_path: doc._replace(id_path=id_path)
 )
 
-
 output_path = Lens(
     lambda doc: doc.output_path,
     lambda doc, output_path: doc._replace(output_path=output_path)
@@ -113,36 +107,30 @@ title = Lens(
     lambda doc, title: doc._replace(title=title)
 )
 
-
 content = Lens(
     lambda doc: doc.content,
     lambda doc, content: doc._replace(content=content)
 )
-
 
 created = Lens(
     lambda doc: doc.created,
     lambda doc, created: doc._replace(created=created)
 )
 
-
 modified = Lens(
     lambda doc: doc.modified,
     lambda doc, modified: doc._replace(modified=modified)
 )
-
 
 meta = Lens(
     lambda doc: doc.meta,
     lambda doc, meta: doc._replace(meta=meta)
 )
 
-
 template = Lens(
     lambda doc: doc.template,
     lambda doc, template: doc._replace(template=template)
 )
-
 
 meta_summary = lens_compose(meta, key("summary", ""))
 
@@ -163,7 +151,6 @@ def with_ext_html(doc):
 
 output_tld = compose(pathtools.tld, output_path.get)
 id_tld = compose(pathtools.tld, id_path.get)
-
 
 _infer_template = compose(
     pathtools.ext_html,
@@ -188,11 +175,13 @@ def with_template(t):
     """
     Set template `t`, but only if doc doesn't have one already.
     """
+
     def with_template_on_doc(doc):
         if get(template, doc) != "":
             return doc
         else:
             return put(template, doc, t)
+
     return with_template_on_doc
 
 
@@ -247,6 +236,7 @@ def annotate_exceptions(func):
     Decorates a mapping function for docs, giving it a more useful
     exception message.
     """
+
     @wraps(func)
     def func_with_annotated_exceptions(doc):
         try:
@@ -261,6 +251,7 @@ def annotate_exceptions(func):
                 module=func.__module__
             )
             raise DocException(msg) from e
+
     return func_with_annotated_exceptions
 
 

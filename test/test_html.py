@@ -2,10 +2,11 @@
 Unit tests for html
 """
 import unittest
+
 from lettersmith import html
 
 
-class test_strip_html(unittest.TestCase):
+class TestStripHTML(unittest.TestCase):
     def test_1(self):
         text = """<p><a href='http://example.com'>foo</a></p>"""
         s = html.strip_html(text)

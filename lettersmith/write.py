@@ -1,5 +1,6 @@
-from pathlib import PurePath
 import shutil
+from pathlib import PurePath
+
 from lettersmith import doc as Doc
 from lettersmith import file as File
 from lettersmith.io import write_file_deep
@@ -13,6 +14,7 @@ def writer(writeable):
     Returns a `write` function that knows how to take these 2-tuples
     and write them to disk.
     """
+
     def write(things, directory):
         """
         Write files to `directory`.
@@ -29,6 +31,7 @@ def writer(writeable):
                 mode="wb"
             )
         return {"written": written}
+
     return write
 
 

@@ -2,8 +2,8 @@
 Render wikilinks in text.
 """
 import re
-from lettersmith.path import to_slug
 
+from lettersmith.path import to_slug
 
 _WIKILINK = r'\[\[([^\]]+)\]\]'
 _TRANSCLUDE = r'^\[\[([^\]]+)\]\]$'
@@ -56,6 +56,7 @@ def renderer(render_wikilink):
     """
     Creates a renderer function
     """
+
     def _render_wikilink(match):
         slug, title = _parse_wikilink(match.group(0))
         return render_wikilink(slug, title, "inline")

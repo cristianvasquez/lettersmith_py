@@ -1,8 +1,9 @@
 from markdown import markdown as md
 from mdx_gfm import GithubFlavoredMarkdownExtension
-from lettersmith.html import strip_html
+
 from lettersmith import docs as Docs
 from lettersmith.func import compose
+from lettersmith.html import strip_html
 
 
 def markdown(s):

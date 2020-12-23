@@ -2,8 +2,6 @@
 Utility functions.
 Mostly tools for working with dictionaries and iterables.
 """
-from functools import wraps
-from fnmatch import fnmatch
 from collections import OrderedDict
 
 

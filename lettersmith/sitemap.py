@@ -1,10 +1,11 @@
-from pathlib import Path
 from datetime import datetime
 from itertools import islice
+from pathlib import Path
+
 from lettersmith import doc as Doc
+from lettersmith.func import composable
 from lettersmith.jinjatools import FileSystemEnvironment
 from lettersmith.path import to_url
-from lettersmith.func import composable
 
 MODULE_PATH = Path(__file__).parent
 TEMPLATE_PATH = Path(MODULE_PATH, "package_data", "template")
@@ -15,8 +16,11 @@ FILTERS = {
 
 
 def render_sitemap(docs,
-    base_url="/", last_build_date=None,
-    title="Feed", description="", author=""):
+                   base_url="/",
+                   last_build_date=None,
+                   title="Feed",
+                   description="",
+                   author=""):
     context = {"base_url": base_url}
     env = FileSystemEnvironment(
         str(TEMPLATE_PATH),

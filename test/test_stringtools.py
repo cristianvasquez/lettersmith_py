@@ -3,10 +3,11 @@ Unit tests for stringtools
 """
 
 import unittest
+
 from lettersmith import stringtools
 
 
-class test_truncate(unittest.TestCase):
+class TestTruncate(unittest.TestCase):
     def test_text(self):
         s = """
 Shall I compare thee to a summer’s day?

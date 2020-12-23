@@ -1,4 +1,5 @@
 import unittest
+
 from lettersmith.func import compose, thrush, pipe, rest, composable
 
 
@@ -59,7 +60,7 @@ class test_rest(unittest.TestCase):
         self.assertEqual(v, (1, 2, 3))
 
 
-class test_composable(unittest.TestCase):
+class TestComposable(unittest.TestCase):
     def test_1(self):
         @composable
         def f(a, b, c):

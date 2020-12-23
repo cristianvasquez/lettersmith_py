@@ -1,11 +1,11 @@
 """
 Tools for blogging
 """
-from lettersmith.func import compose
-from lettersmith import wikidoc
 from lettersmith import absolutize
-from lettersmith import permalink
 from lettersmith import docs as Docs
+from lettersmith import permalink
+from lettersmith import wikidoc
+from lettersmith.func import compose
 
 
 def markdown_doc(base_url):
@@ -15,7 +15,7 @@ def markdown_doc(base_url):
     - Markdown
     - Wikilinks
     - Transclusions
-    - Absolutizes post links
+    - Absolutizes post uris
     - Changes file extension to .html
     - Sets template in prep for Jinja rendering later
     """
@@ -35,7 +35,7 @@ def markdown_page(base_url, relative_to="."):
     - Markdown
     - Wikilinks
     - Transclusions
-    - Absolutizes post links
+    - Absolutizes post uris
     - Changes file extension to .html
     - Sets template in prep for Jinja rendering later
     """
@@ -53,7 +53,7 @@ def markdown_post(base_url):
     - Markdown
     - Wikilinks
     - Transclusions
-    - Absolutizes post links
+    - Absolutizes post uris
     - Changes file extension to .html
     - Sets template in prep for Jinja rendering later
     """
@@ -70,7 +70,7 @@ def html_doc(base_url):
     - Wrap non-HTML lines with paragraph tags.
     - Wikilinks
     - Transclusions
-    - Absolutizes post links
+    - Absolutizes post uris
     - Changes file extension to .html
     - Sets template in prep for Jinja rendering later
     """
@@ -90,7 +90,7 @@ def html_page(base_url, relative_to="."):
     - Wrap non-HTML lines with paragraph tags.
     - Wikilinks
     - Transclusions
-    - Absolutizes post links
+    - Absolutizes post uris
     - Changes file extension to .html
     - Sets template in prep for Jinja rendering later
     """
@@ -108,7 +108,7 @@ def html_post(base_url):
     - Wrap non-HTML lines with paragraph tags.
     - Wikilinks
     - Transclusions
-    - Absolutizes post links
+    - Absolutizes post uris
     - Changes file extension to .html
     - Sets template in prep for Jinja rendering later
     """

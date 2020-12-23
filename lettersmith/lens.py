@@ -12,7 +12,6 @@ to complex data structures.
 from collections import namedtuple
 from functools import reduce
 
-
 Lens = namedtuple("Lens", ("get", "put"))
 Lens.__doc__ = """
 Container type for Lenses.
@@ -26,6 +25,7 @@ def _lens_compose2(big_lens, small_lens):
     Compose 2 lenses. This allows you to create a lens that can
     do a deep get/set.
     """
+
     def get(big):
         """
         Lens `get` method (composed)
@@ -78,11 +78,13 @@ def over_with(lens, func):
     that will map over value in `big` using `func`, and returning
     a new instance of `big`.
     """
+
     def over_bound(big):
         """
         Map value(s) in `big` using a bound mapping function.
         """
         return over(lens, func, big)
+
     return over_bound
 
 
@@ -100,6 +102,7 @@ def key(k, default=None):
     Because it allows for a default, it technically violates the
     lens laws. However, in practice, it's too darn useful not to have.
     """
+
     def get(big):
         """
         Get key from dict
@@ -129,6 +132,7 @@ def keys(*keys):
     Lens to get and set multiple keys on a dictionary. Note that
     no default values are allowed.
     """
+
     def get(big):
         """
         Get key from dict

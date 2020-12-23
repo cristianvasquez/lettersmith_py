@@ -1,8 +1,7 @@
 """
 File utilities
 """
-import shutil
-from pathlib import Path, PurePath
+from pathlib import Path
 
 
 def write_file_deep(pathlike, content, mode="w"):

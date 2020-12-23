@@ -8,10 +8,10 @@ from lettersmith.func import composable
 
 @composable
 def archive(
-    docs,
-    output_path,
-    title="Archive",
-    template="archive.html"
+        docs,
+        output_path,
+        title="Archive",
+        template="archive.html"
 ):
     """
     Generate an archive doc for a list of docs.

@@ -1,21 +1,19 @@
 """
 Command line tool for scaffolding Lettersmith sites.
 """
-from pathlib import Path, PurePath
-from os import makedirs
-import shutil
 import argparse
 import random
-
+import shutil
+from pathlib import Path
 
 parser = argparse.ArgumentParser(
     description="""A tool for scaffolding Lettersmith sites""")
 parser.add_argument("project_path",
-    type=Path,
-    help="Path to your project directory")
+                    type=Path,
+                    help="Path to your project directory")
 parser.add_argument("-t", "--type",
-    type=str, default='blog', choices=["blog"],
-    help="The type of project to scaffold")
+                    type=str, default='blog', choices=["blog"],
+                    help="The type of project to scaffold")
 args = parser.parse_args()
 
 
@@ -32,10 +30,12 @@ def main():
             "Hocus pocus — Your new site is ready!",
             "Alakazam — Your new site is ready!",
             "Tada — Your new site is ready!",
-            "A wild website appears!"
+            "A wild website appears!",
+            "Your new website is waiting for you..."
         )
 
         print(random.choice(messages))
+
     except FileExistsError:
         message = (
             f"Error: project_path \"{project_path}\" already exists.\n\n"

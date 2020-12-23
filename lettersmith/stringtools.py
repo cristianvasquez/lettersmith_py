@@ -1,6 +1,5 @@
 import re
 
-
 _FIRST_SENTENCE = r'^[^.]+'
 
 

@@ -1,21 +1,17 @@
 """
 Tools for rendering wikilinks in content.
 """
-import re
-from collections import namedtuple
 from lettersmith import doc as Doc
-from lettersmith import docs as Docs
-from lettersmith import stub as Stub
 from lettersmith import edge as Edge
 from lettersmith import html
-from lettersmith import wikimarkup
 from lettersmith import markdowntools
-from lettersmith.path import to_slug, to_url
-from lettersmith.util import index_sets, expand
-from lettersmith.lens import lens_compose, key, get, put, over
+from lettersmith import stub as Stub
+from lettersmith import wikimarkup
 from lettersmith.func import compose, composable
+from lettersmith.lens import lens_compose, key, get, put, over
+from lettersmith.path import to_slug, to_url
 from lettersmith.stringtools import first_sentence
-
+from lettersmith.util import index_sets, expand
 
 # Read a summary from an HTML text blob
 read_summary_html = compose(
@@ -39,12 +35,14 @@ def _summary(read_summary):
 
     If doc already has a `doc.meta["summary"]` it will leave it alone.
     """
+
     def summary(docs):
         for doc in docs:
             if get(Doc.meta_summary, doc):
                 yield doc
             else:
                 yield put(Doc.meta_summary, doc, read_summary(doc.content))
+
     return summary
 
 
@@ -89,7 +87,7 @@ def _index_by_backlink(edge):
 
 
 _empty = tuple()
-meta_links = lens_compose(Doc.meta, key("links", _empty))
+meta_links = lens_compose(Doc.meta, key("uris", _empty))
 meta_backlinks = lens_compose(Doc.meta, key("backlinks", _empty))
 
 
@@ -103,9 +101,9 @@ def has_backlinks(doc):
 
 def annotate_links(docs):
     """
-    Annotate docs with links and backlinks.
+    Annotate docs with uris and backlinks.
 
-    Returns an iterator for docs with 2 new meta fields: links and backlinks.
+    Returns an iterator for docs with 2 new meta fields: uris and backlinks.
     Each contains a tuple of `Stub`s.
     """
     docs = tuple(docs)
@@ -117,7 +115,7 @@ def annotate_links(docs):
         backlinks = frozenset(backlink_index.get(doc.id_path, empty))
         links = frozenset(link_index.get(doc.id_path, empty))
         yield Doc.update_meta(doc, {
-            "links": links,
+            "uris": links,
             "backlinks": backlinks,
         })
 
@@ -134,11 +132,11 @@ _TRANSCLUDE_TEMPLATE = '''<aside class="transclude">
 
 @composable
 def content_wikilinks(
-    docs,
-    base_url,
-    link_template=_LINK_TEMPLATE,
-    nolink_template=_NOLINK_TEMPLATE,
-    transclude_template=_TRANSCLUDE_TEMPLATE
+        docs,
+        base_url,
+        link_template=_LINK_TEMPLATE,
+        nolink_template=_NOLINK_TEMPLATE,
+        transclude_template=_TRANSCLUDE_TEMPLATE
 ):
     """
     `[[wikilink]]` is replaced with a link to a doc with the same title
@@ -151,7 +149,7 @@ def content_wikilinks(
     slug_to_stub = _index_by_slug(docs)
 
     def render_wikilink(slug, title, type):
-        if type is "transclude":
+        if type == "transclude":
             try:
                 link = slug_to_stub[slug]
                 url = to_url(link.output_path, base=base_url)
@@ -177,10 +175,10 @@ def content_wikilinks(
 
 
 def content_markdown(
-    base_url,
-    link_template=_LINK_TEMPLATE,
-    nolink_template=_NOLINK_TEMPLATE,
-    transclude_template=_TRANSCLUDE_TEMPLATE
+        base_url,
+        link_template=_LINK_TEMPLATE,
+        nolink_template=_NOLINK_TEMPLATE,
+        transclude_template=_TRANSCLUDE_TEMPLATE
 ):
     """
     Render markdown and wikilinks.
@@ -188,7 +186,7 @@ def content_markdown(
     Also annotates doc meta with:
 
     - A summary
-    - A list of links and backlinks.
+    - A list of uris and backlinks.
 
     Example:
 
@@ -218,10 +216,10 @@ def content_markdown(
 
 
 def content_html(
-    base_url,
-    link_template=_LINK_TEMPLATE,
-    nolink_template=_NOLINK_TEMPLATE,
-    transclude_template=_TRANSCLUDE_TEMPLATE
+        base_url,
+        link_template=_LINK_TEMPLATE,
+        nolink_template=_NOLINK_TEMPLATE,
+        transclude_template=_TRANSCLUDE_TEMPLATE
 ):
     """
     Render html (wrap bare lines with paragraphs) and wikilinks.
@@ -229,7 +227,7 @@ def content_html(
     Also annotates doc meta with:
 
     - A summary
-    - A list of links and backlinks.
+    - A list of uris and backlinks.
 
     Example:
 

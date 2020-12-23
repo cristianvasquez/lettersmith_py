@@ -1,10 +1,9 @@
-from urllib.parse import urlparse, urljoin
-from pathlib import Path, PurePath
 import re
+from pathlib import Path, PurePath
+from urllib.parse import urlparse, urljoin
+
 from lettersmith.func import compose
 from lettersmith.lens import Lens, put
-from lettersmith import query
-
 
 _STRANGE_CHARS = "[](){}<>:^&%$#@!'\"|*~`,"
 _STRANGE_CHAR_PATTERN = "[{}]".format(re.escape(_STRANGE_CHARS))
@@ -201,8 +200,8 @@ def is_sibling(path_a, path_b):
     foo/bar/boing/index.html
     """
     return (
-        PurePath(path_a).parent == PurePath(path_b).parent
-        and not is_index(path_b))
+            PurePath(path_a).parent == PurePath(path_b).parent
+            and not is_index(path_b))
 
 
 def filter_files(paths):

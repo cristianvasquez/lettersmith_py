@@ -1,30 +1,29 @@
-from pathlib import Path
 from datetime import datetime
-from lettersmith.jinjatools import FileSystemEnvironment
-from lettersmith.path import to_url
+from pathlib import Path
+
 from lettersmith import doc as Doc
 from lettersmith.docs import most_recent
-from lettersmith.html import get_summary
-from lettersmith.stringtools import first_sentence
 from lettersmith.func import composable
-
+from lettersmith.html import get_summary
+from lettersmith.jinjatools import FileSystemEnvironment
+from lettersmith.path import to_url
 
 MODULE_PATH = Path(__file__).parent
 TEMPLATE_PATH = Path(MODULE_PATH, "package_data", "template")
-
 
 FILTERS = {
     "get_summary": get_summary,
     "to_url": to_url
 }
 
+
 def render_rss(
-    docs,
-    base_url,
-    last_build_date,
-    title,
-    description,
-    author
+        docs,
+        base_url,
+        last_build_date,
+        title,
+        description,
+        author
 ):
     context = {
         "generator": "Lettersmith",
@@ -50,13 +49,13 @@ _most_recent_24 = most_recent(24)
 
 @composable
 def rss(
-    docs,
-    base_url,
-    title,
-    description,
-    author,
-    output_path="rss.xml",
-    last_build_date=None
+        docs,
+        base_url,
+        title,
+        description,
+        author,
+        output_path="rss.xml",
+        last_build_date=None
 ):
     """
     Given an iterable of docs and some details, returns an

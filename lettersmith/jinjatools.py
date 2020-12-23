@@ -1,16 +1,14 @@
-import random
 import itertools
+import random
 from datetime import datetime
 
 from jinja2 import Environment, FileSystemLoader
 
-from lettersmith import util
-from lettersmith import docs as Docs
 from lettersmith import doc as Doc
-from lettersmith import query
-from lettersmith.lens import get, put
 from lettersmith import path as pathtools
-from lettersmith.markdowntools import markdown
+from lettersmith import query
+from lettersmith import util
+from lettersmith.lens import get, put
 
 
 def _choice(iterable):
@@ -45,6 +43,7 @@ def _sample(iterable, k):
 def _permalink(base_url):
     def permalink_bound(output_path):
         return pathtools.to_url(output_path, base_url)
+
     return permalink_bound
 
 
@@ -74,6 +73,7 @@ class LettersmithEnvironment(FileSystemEnvironment):
     Specialized version of default Jinja environment class that
     offers additional filters and environment variables.
     """
+
     def __init__(self, templates_path, filters={}, context={}):
         loader = FileSystemLoader(templates_path)
         super().__init__(
@@ -89,7 +89,7 @@ def should_template(doc):
     """
     Check if a doc should be templated. Returns a bool.
     """
-    return get(Doc.template, doc) is not ""
+    return get(Doc.template, doc) != ""
 
 
 def jinja(templates_path, base_url, context={}, filters={}):

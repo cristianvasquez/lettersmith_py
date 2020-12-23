@@ -2,12 +2,11 @@
 Tools for working with collections of docs
 """
 from fnmatch import fnmatch
-from lettersmith import path as pathtools
+
 from lettersmith import doc as Doc
+from lettersmith import path as pathtools
 from lettersmith import query
 from lettersmith.func import composable, compose
-from lettersmith.lens import get
-
 
 load = query.maps(Doc.load)
 
