@@ -18,7 +18,7 @@ import frontmatter
 
 from lettersmith import path as pathtools
 from lettersmith.date import read_file_times, EPOCH, to_datetime
-from lettersmith.func import compose
+from lettersmith.functional.func import compose
 from lettersmith.lens import (
     Lens, lens_compose, get, put, key, over_with, update
 )

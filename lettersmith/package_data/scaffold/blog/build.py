@@ -19,7 +19,7 @@ static = files.find("static/**/*")
 # Load post docs and pipe through plugins
 posts = pipe(
     docs.find("post/*.md"),
-    blog.markdown_post(base_url),
+    blog.markdown_post_plugin(base_url),
     docs.sort_by_created,
     tuple
 )

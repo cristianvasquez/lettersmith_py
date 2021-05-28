@@ -1,8 +1,9 @@
 import re
+from os import path
 from pathlib import Path, PurePath
 from urllib.parse import urlparse, urljoin
 
-from lettersmith.func import compose
+from lettersmith.functional.func import compose
 from lettersmith.lens import Lens, put
 
 _STRANGE_CHARS = "[](){}<>:^&%$#@!'\"|*~`,"

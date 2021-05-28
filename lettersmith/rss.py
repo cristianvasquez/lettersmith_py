@@ -3,7 +3,7 @@ from pathlib import Path
 
 from lettersmith import doc as Doc
 from lettersmith.docs import most_recent
-from lettersmith.func import composable
+from lettersmith.functional.func import composable
 from lettersmith.html import get_summary
 from lettersmith.jinjatools import FileSystemEnvironment
 from lettersmith.path import to_url

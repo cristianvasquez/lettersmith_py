@@ -7,7 +7,7 @@ from lettersmith import html
 from lettersmith import markdowntools
 from lettersmith import stub as Stub
 from lettersmith import wikimarkup
-from lettersmith.func import compose, composable
+from lettersmith.functional.func import compose, composable
 from lettersmith.lens import lens_compose, key, get, put, over
 from lettersmith.path import to_slug, to_url
 from lettersmith.stringtools import first_sentence

@@ -5,8 +5,8 @@ from fnmatch import fnmatch
 
 from lettersmith import doc as Doc
 from lettersmith import path as pathtools
-from lettersmith import query
-from lettersmith.func import composable, compose
+from lettersmith.functional import query
+from lettersmith.functional.func import composable, compose
 
 load = query.maps(Doc.load)
 
@@ -55,15 +55,20 @@ def filter_siblings(docs, id_path):
             yield doc
 
 
-remove_drafts = query.rejects(compose(pathtools.is_draft, Doc.id_path.get))
-remove_index = query.rejects(compose(pathtools.is_index, Doc.id_path.get))
+
+
 dedupe = query.dedupes(Doc.id_path.get)
+
+remove_index = query.rejects(compose(pathtools.is_index, Doc.id_path.get))
+remove_drafts = query.rejects(compose(pathtools.is_draft, Doc.id_path.get))
+
+autotemplate = query.maps(Doc.autotemplate)
+with_ext_html = query.maps(Doc.with_ext_html)
 uplift_frontmatter = query.maps(Doc.uplift_frontmatter)
+
 sort_by_created = query.sorts(Doc.created.get, reverse=True)
 sort_by_modified = query.sorts(Doc.modified.get, reverse=True)
 sort_by_title = query.sorts(Doc.title.get)
-autotemplate = query.maps(Doc.autotemplate)
-with_ext_html = query.maps(Doc.with_ext_html)
 
 
 def most_recent(n):

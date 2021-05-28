@@ -5,7 +5,7 @@ from lettersmith import absolutize
 from lettersmith import docs as Docs
 from lettersmith import permalink
 from lettersmith import wikidoc
-from lettersmith.func import compose
+from lettersmith.functional.func import compose
 
 
 def markdown_doc(base_url):
@@ -45,7 +45,7 @@ def markdown_page(base_url, relative_to="."):
     )
 
 
-def markdown_post(base_url):
+def markdown_post_plugin(base_url):
     """
     Performs typical transformations for a blog post.
 

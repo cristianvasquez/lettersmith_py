@@ -3,7 +3,7 @@ from itertools import islice
 from pathlib import Path
 
 from lettersmith import doc as Doc
-from lettersmith.func import composable
+from lettersmith.functional.func import composable
 from lettersmith.jinjatools import FileSystemEnvironment
 from lettersmith.path import to_url
 

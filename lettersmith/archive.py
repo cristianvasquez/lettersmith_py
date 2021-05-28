@@ -3,7 +3,7 @@ Generate an archive page.
 """
 from lettersmith import doc as Doc
 from lettersmith import stub as Stub
-from lettersmith.func import composable
+from lettersmith.functional.func import composable
 
 
 @composable

@@ -2,9 +2,9 @@ from pathlib import PurePath
 
 from lettersmith import doc as Doc
 from lettersmith import path as pathtools
-from lettersmith import query
+from lettersmith.functional import query
 from lettersmith.docs import with_ext_html
-from lettersmith.func import composable, compose
+from lettersmith.functional.func import composable, compose
 from lettersmith.lens import over_with, put
 
 

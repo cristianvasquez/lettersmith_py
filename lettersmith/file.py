@@ -79,7 +79,7 @@ def to_doc(file):
     )
 
 
-def from_doc(file):
+def from_doc(doc):
     """
     Create a File from a Doc.
     """

@@ -7,7 +7,7 @@ from lettersmith import doc as Doc
 from lettersmith import docs as Docs
 from lettersmith import path as pathtools
 from lettersmith import stub as Stub
-from lettersmith.func import composable, pipe
+from lettersmith.functional.func import composable, pipe
 from lettersmith.lens import lens_compose, key, get, put
 
 _empty = tuple()

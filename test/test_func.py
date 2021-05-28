@@ -1,6 +1,6 @@
 import unittest
 
-from lettersmith.func import compose, thrush, pipe, rest, composable
+from lettersmith.functional.func import compose, thrush, pipe, rest, composable
 
 
 class test_compose(unittest.TestCase):

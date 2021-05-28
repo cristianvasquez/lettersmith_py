@@ -4,7 +4,7 @@ Stubs are summary details for a document.
 from collections import namedtuple
 
 from lettersmith import doc as Doc
-from lettersmith import query
+from lettersmith.functional import query
 from lettersmith.lens import get
 
 Stub = namedtuple("Stub", (

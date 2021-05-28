@@ -6,7 +6,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from lettersmith import doc as Doc
 from lettersmith import path as pathtools
-from lettersmith import query
+from lettersmith.functional import query
 from lettersmith import util
 from lettersmith.lens import get, put
 
